@@ -1,0 +1,6 @@
+Streamlit hosting on AWS:
+https://www.youtube.com/watch?v=oynd7Xv2i9Y&ab_channel=TechwithHitch
+
+Fishing Data Source:
+https://wdfw.wa.gov/fishing/locations
+
