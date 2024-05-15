@@ -1,6 +1,19 @@
 import requests
 
 
+def read_api_key(file_path):
+    try:
+        with open(file_path, "r") as file:
+            api_key = file.read().strip()
+        return api_key
+    except FileNotFoundError:
+        print(f"Error: The file {file_path} was not found.")
+        return None
+    except Exception as e:
+        print(f"An error occurred: {e}")
+        return None
+
+
 def get_place_autocomplete(input_text, api_key):
     endpoint = "https://maps.googleapis.com/maps/api/place/autocomplete/json"
     params = {
@@ -22,7 +35,7 @@ def get_place_autocomplete(input_text, api_key):
 
 # Example usage
 if __name__ == "__main__":
-    api_key = "YOUR_GOOGLE_PLACES_API_KEY"
+    api_key = read_api_key("my_api_key.txt")
     input_text = "1600 Amphitheatre"
     suggestions = get_place_autocomplete(input_text, api_key)
     print("Suggestions:", suggestions)

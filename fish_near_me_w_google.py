@@ -2,6 +2,19 @@ import requests
 import time
 
 
+def read_api_key(file_path):
+    try:
+        with open(file_path, "r") as file:
+            api_key = file.read().strip()
+        return api_key
+    except FileNotFoundError:
+        print(f"Error: The file {file_path} was not found.")
+        return None
+    except Exception as e:
+        print(f"An error occurred: {e}")
+        return None
+
+
 def get_travel_time(api_key, origin_address, destination_coordinates):
     # Base URL for Google Distance Matrix API
     url = "https://maps.googleapis.com/maps/api/distancematrix/json?"
@@ -31,8 +44,7 @@ def get_travel_time(api_key, origin_address, destination_coordinates):
         return f"Error: {response.status_code}"
 
 
-# Replace with your Google API key
-api_key = "my api key"
+api_key = read_api_key("my_api_key.txt")
 
 # Example usage
 origin_address = "1600 Amphitheatre Parkway, Mountain View, CA"
